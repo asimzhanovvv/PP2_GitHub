@@ -5,4 +5,4 @@ def solve(numheads, numlegs):
             if x+y == numheads and 4*x + 2*y == numlegs:
                 print(x, y)
 
-solve(35, 94) # 23 12
+solve(35, 94) # 12 23

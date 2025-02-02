@@ -8,8 +8,6 @@ def has_33(nums):
 
     return check
 
-
-
 print(has_33([1, 3, 3]))         # → True
 print(has_33([1, 3, 1, 3]))      # → False
 print(has_33([3, 1, 3]))         # → False
