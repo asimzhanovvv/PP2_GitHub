@@ -1,7 +1,7 @@
 John's email is john.doe@example.com, and his backup is johndoe123@work.net.  
 Call him at +1-555-123-4567 or his office line (555) 765-4321.  
-His website is https://www.johndoe.dev, and his IP address is 192.168.0.1.  
-The price of the item is $19.99, but with a discount, it’s now $14.99.  
+His website is https://www.johndoe.dev, and his_IP_address is 192.168.0.1.  
+The price of the item_is $19.99, but with a_ discount, it’s now $14.99.  
 Today's date is 17/02/2025, and another format is 2025-02-17.  
 Here’s some HTML: <div class="container">Hello, World!</div>  
 Watch out for special characters like !@#$%^&*()_+={}[]|:;"'<>,.?/
@@ -21,4 +21,4 @@ Regular expressions can contain both special and ordinary characters.
 Most ordinary characters, like 'A', 'a', or '0', are the simplest regular expressions; 
 they simply match themselves. You can concatenate ordinary characters, so last matches the string 'last'. 
 (In the rest of this section, we’ll write RE’s in this special style, usually without quotes, and strings to be matched 'in single quotes'.)
-ab, abbbb, aaaabbb. Aaaaabb.
+ab abbbb, aaaabbb Aaaaabb. alkjlkjlkb
