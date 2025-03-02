@@ -1,0 +1,6 @@
+tuple1 = (1, 2, 3, 4, 5, True, "Hello", 0)
+tuple2 = (1, 2, 3, 4, 5, True, "Hello", False)
+tuple3 = (1, 2, 3, 4, 5, True, "Hello")
+print(f"1. {all(tuple1)}")
+print(f"2. {all(tuple2)}")
+print(f"3. {all(tuple3)}")
