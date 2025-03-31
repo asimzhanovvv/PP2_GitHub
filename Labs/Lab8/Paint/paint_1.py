@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -140,6 +141,9 @@ while running:
 
             if event.key == pygame.K_c:  # Clear screen with 'C' key
                 clear_screen()
+
+            if event.key == pygame.K_x: # Random
+                curr_color = random.choice(colors)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_KP_PLUS ] or keys[pygame.K_RIGHTBRACKET]:
