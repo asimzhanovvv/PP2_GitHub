@@ -5,7 +5,7 @@ conn = psycopg2.connect( # creating a connection
     database="phonebook",
     user="postgres",
     host="localhost",
-    password="5647Radmir",
+    password="12345",
     port=5432,
 )
 
@@ -89,6 +89,7 @@ def get_names_filter_by_letter(letter):
 
 # Get names filter by provider
 def get_names_filter_by_provider(provider):
+    # Define the prefixes for each provider
     provider_prefixes = {
         'kcell': ['701', '702', '775', '778'],
         'beeline': ['705', '777'],
@@ -96,15 +97,17 @@ def get_names_filter_by_provider(provider):
         'altel': ['708', '709', '770', '700'],
     }
 
+    # Convert provider to lowercase to make it case-insensitive
     prefixes = provider_prefixes.get(provider.lower())
     if not prefixes:
         print("Unknown provider.")
         return
-
+    
     with conn.cursor() as cur:
         results = []
         for prefix in prefixes:
-            # проверяем и номера с +7 и с 8
+            # checking for both +7 and 8 prefixes
+            # using LIKE operator to match the phone number
             cur.execute("""
                 SELECT * FROM phonebook 
                 WHERE phone LIKE %s OR phone LIKE %s
@@ -130,8 +133,13 @@ def update_user_name():
         cur.execute(command, (new_name, current_phone))
         if cur.rowcount == 0:
             print("No matching user found.")
+            waiting = input("Press Enter to continue...")
+            print()
         else:
             print("User name updated successfully.")
+            waiting = input("Press Enter to continue...")
+            print()
+        # Commit the changes to the database
         conn.commit()
 
 # Update phone number
@@ -145,8 +153,12 @@ def update_user_phone():
         cur.execute(command, (new_phone, current_phone))
         if cur.rowcount == 0:
             print("No matching user found.")
+            waiting = input("Press Enter to continue...")
+            print()
         else:
-            print("Phone number updated successfully.")
+            print("User name updated successfully.")
+            waiting = input("Press Enter to continue...")
+            print()
         conn.commit()
 
 
@@ -159,6 +171,9 @@ def delete_user(phone):
     with conn.cursor() as cur:
         cur.execute(command, (phone,))
         conn.commit()
+        print("User DELETED successfully.")
+        waiting = input("Press Enter to continue...")
+        print()
 
 #Select all users
 def select_all():
@@ -207,8 +222,14 @@ while True:
             phone = input("Enter phone number: ")
             insert(user_name, phone)
         elif choice == '4':   # insert from csv
+
             csv_file_name = input("Enter csv file name without (.csv): ")
-            insert_from_csv(csv_file_name=f"{csv_file_name}.csv")
+
+            if csv_file_name == '': csv_file_name = f"users.csv" 
+            else: csv_file_name = f"{csv_file_name}.csv" 
+
+            insert_from_csv(csv_file_name)
+
         elif choice == '5':
             sub_choice = input("1. By first letter of name\n2. By provider\nEnter your choice: ")
             if sub_choice == '1':
