@@ -9,7 +9,7 @@ conn = psycopg2.connect( # creating a connection
     port=5432,
 )
 
-
+# Execute a query
 def execute_query(query):
     try:
         with conn.cursor() as cur:
@@ -39,9 +39,6 @@ def call_function_w_args(function_name, args):
             return cur.fetchall()
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
-# execute_query(create_func_filter_by_first_letter)
-# letter = tuple((input("Enter the first letter: ")).upper())
-# print(call_function_w_args('filter_by_first_letter', letter))
 
 
 
@@ -77,11 +74,6 @@ def insert_new(user, phone):
             conn.commit()
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
-# user = input("Enter user name: ")
-# phone = input("Enter phone number: ")
-# insert_new(user, phone)
-
-
 
 
 # INSERT PROCEDURE FOR MULTIPLE USERS
@@ -108,15 +100,6 @@ def insert_new_list(users_to_insert):
             conn.commit()
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
-# users_to_insert = [ 
-#     ('Raim', '+77077070000'), 
-#     ('Alexandra', '+77077878787'), 
-#     ('Jennifer', '+77077878787') 
-# ]
-# for user in users_to_insert:
-#     insert_new_list(user)
-
-
 
 
 # DELETE PROCEDURE
@@ -139,15 +122,8 @@ def delete_user(user, phone):
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
 
-# user_2_del = input("Enter user name(Enter if you delete by phone): ")
-# if user_2_del == '':
-#     phone_2_del = input("Enter phone number: ")
-#     delete_user(user_2_del, phone_2_del)
-# else:
-#     phone_2_del = ''
-#     delete_user(user_2_del, phone_2_del)
 
-
+# MENU
 MENU = """
 1. Insert new user
 2. Insert new user from csv file
